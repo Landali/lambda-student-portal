@@ -27,7 +27,7 @@ provider:
   profile: serverlessUser
   environment:
     tableName: ${self:costum.tableName}
-  iamRoleStatement:
+  iamRoleStatements:
     - Effect: Allow
       Action:
           - dynamodb:*
@@ -47,6 +47,13 @@ functions:
       - http:
           path: get-student/{ID}
           method: GET
+          cors: true
+  createStudent:
+    handler: lambdas/endpoints/createStudent.handler
+    events:
+      - http:
+          path: create-student/{firstname}
+          method: POST
           cors: true
 
 resources:

@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const { Module } = require('webpack');
-
+const { v1: uuidv1 } = require('uuid');
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
 const Dynamo = {
@@ -21,6 +21,26 @@ const Dynamo = {
         }
         console.log(data)
         return data.Item;
+    },
+    async write (data, TableName) {
+        if (!data.firstname || !data.lastname) {
+            throw Error('No student information on data')
+        }
+
+        data.ID = uuidv1();
+
+        const params = {
+            TableName,
+            Item: data
+        };
+
+        const res = await documentClient.put(params).promise();
+
+        if(!res) {
+            throw Error (`There was an error inserting ID of ${data.ID} in table ${TableName}`);
+        }
+        
+        return data;
     }
 };
 
