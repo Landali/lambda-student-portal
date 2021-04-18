@@ -41,7 +41,23 @@ const Dynamo = {
         }
         
         return data;
-    }
+    },
+    async list (TableName) {
+        const params = {
+            TableName
+        };
+        
+        const data = await documentClient
+            .scan(params)
+            .promise()
+
+        console.log('List of students retrieved: ', data)
+
+        if (!data) {
+            throw Error(`There was an error fetching the data from ${TableName}`)
+        }
+        return data.Items;
+    },
 };
 
 module.exports = Dynamo;

@@ -55,6 +55,13 @@ functions:
           path: create-student/{firstname}
           method: POST
           cors: true
+  listStudent:
+    handler: lambdas/endpoints/listStudent.handler
+    events:
+      - http:
+          path: list-student
+          method: GET
+          cors: true
 
 resources:
   Resources:

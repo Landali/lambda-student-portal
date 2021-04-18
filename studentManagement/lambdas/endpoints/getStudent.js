@@ -15,13 +15,13 @@ exports.handler = async event => {
 
     let ID = event.pathParameters.ID;
 
-    const user = await Dynamo.get(ID, tableName).catch(err => {
-        console.log('Error while retrieving user: ', err)
+    const student = await Dynamo.get(ID, tableName).catch(err => {
+        console.log('Error while retrieving student: ', err)
         return null
     })
-    if (!user){
-        return Responses._400({ message: 'Failed to get user by ID'})
+    if (!student){
+        return Responses._400({ message: 'Failed to get student by ID'})
     }
 
-    return Responses._200({ user })
+    return Responses._200({ student })
 }
