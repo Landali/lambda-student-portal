@@ -73,9 +73,10 @@ const Dynamo = {
         const userExist = await documentClient
             .get(paramsCheck)
             .promise()
-        if (userExist.username) {
+            console.log('user existe?', userExist)
+        if (userExist.Item) {
             console.warn(`A user with username: ${data.username}`, userExist)
-            return {}
+            throw Error('User already exist');
         }
 
         const params = {
@@ -116,10 +117,10 @@ const Dynamo = {
             console.warn(`A user with username: ${data.username} does not exist`, res)
             return {}
         }
-
+        console.warn('check password', res.Item.password !== password)
         if (res.Item.password !== password) {
             console.warn(`Invalid Credentials`)
-            return {}
+            throw Error('Invalid Credentials');
         }
         return res;
     },

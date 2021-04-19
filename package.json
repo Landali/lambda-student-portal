@@ -1,0 +1,39 @@
+{
+  "name": "lambda-create-student",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "testEcho": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest tests --no-cache --colors --watchAll --bail",
+    "test-get-student": "jest tests/getStudent --no-cache --colors --watchAll --bail",
+    "test-view-student": "jest tests/viewStudent --no-cache --colors --watchAll --bail",
+    "test-create-student": "jest tests/createStudent --no-cache --colors --watchAll --bail",
+    "test-sign-up": "jest tests/signup --no-cache --colors --watchAll --bail",
+    "test-sign-in": "jest tests/signin --no-cache --colors --watchAll --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Landali/lambda-create-student.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Landali/lambda-create-student/issues"
+  },
+  "homepage": "https://github.com/Landali/lambda-create-student#readme",
+  "jest": {
+    "verbose": true,
+    "globals": {
+      "__DEV__": true
+    },
+    "testRegex": ".*test.js$",
+    "rootDir": "./tests",
+    "modulePathIgnorePatterns": [
+      "node_modules"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}

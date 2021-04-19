@@ -5,7 +5,7 @@ const tableName = 'instructors'
 exports.handler = async event => {
     console.log('event', event);
 
-    if (!event.pathParameters || !event.pathParameters.username) {
+    if (!event.pathParameters || !event.pathParameters.username || event.pathParameters.username === 'undefined') {
         // failed without an ID
         return Responses._400({ message: 'missing the username from path.' })
     }
@@ -13,6 +13,11 @@ exports.handler = async event => {
     let username = event.pathParameters.username;
     const user = JSON.parse(event.body);
     user.username = username
+
+    if (!user.password || user.password === 'undefined') {
+        // failed without an ID
+        return Responses._400({ message: 'missing credentials from path.' })
+    }
 
     const newUser = await Dynamo.writeUser(user, tableName).catch(err =>{
         console.log('Error while creating new user for instructor', err);
