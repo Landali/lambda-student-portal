@@ -45,6 +45,7 @@ Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 - Clone this repository.
 ```
    git clone https://github.com/Landali/lambda-student-portal.git
+   git checkout feature/serverless-manage-student
     npm i -g jest
     npm i
    cd studentManagement
